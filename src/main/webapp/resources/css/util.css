@@ -1,0 +1,2 @@
+.loading{height: 100%; width: 100%; background: #fafafa url(../resources/img/load2.gif) 49% 40% no-repeat; background-size: 200px 200px; z-index: 999999999; position: absolute;  overflow: hidden}
+.container{display: none}

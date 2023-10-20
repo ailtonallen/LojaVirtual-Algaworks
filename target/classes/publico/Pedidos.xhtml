@@ -1,0 +1,168 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="pesquisa">
+		<p:commandButton action="#{pesquisaProdutosBean.pesquisar}"
+			process="@this formPesquisaProduto:produto" value="Pesquisar"
+			update=":formulario:tabelaProduto" icon="ui-icon-search" />
+	</ui:define>
+	<ui:define name="titulo"> Fazer pedido</ui:define>
+
+	<ui:define name="corpo">
+		<f:metadata>
+			<o:viewParam name="produto" value="#{pedidoBean.pedido}" />
+			<f:viewAction action="#{pedidoBean.inicializar}" />
+		</f:metadata>
+		<p:growl id="mensagem" />
+		<h:form id="formulario">
+			<p:messages autoUpdate="true" closable="true" />
+
+			<p:dataScroller id="tabelaProduto"
+				value="#{pesquisaProdutosBean.produtosFiltrados}" var="produtos"
+				chunkSize="10">
+				<f:facet name="header">
+
+				</f:facet>
+
+				<h:panelGrid columns="2" style="width:50%"
+					columnClasses="logo,detail">
+					<p:graphicImage cache="false" height="100" width="100"
+						url="http://localhost:8080/uploads/#{produtos.id}.JPG" />
+
+					<p:outputPanel>
+						<h:panelGrid columns="2" cellpadding="7">
+
+							<h:outputText value="Produto:" />
+							<h:outputText value="#{produtos.nome}" style="font-weight: bold" />
+
+							<h:outputText value="Preço:" />
+							<h:outputText value="#{produtos.precoUnitario}"
+								style="font-weight: bold">
+								<f:convertNumber currencyCode="MZN" type="currency" />
+							</h:outputText>
+
+							<h:outputText value="Vendedor:" />
+							<h:outputText value="#{produtos.usuario.nome}"
+								style="font-weight: bold" />
+
+							<h:outputText value="Origem:" />
+							<h:outputText value="#{produtos.origem}"
+								style="font-weight: bold" />
+
+							<h:outputText value="Adicionar ao carrinho" />
+							<p:commandButton icon="ui-icon-cart"
+								title="Adicionar ao carrinho" style="margin:0 auto;"
+								actionListener="#{pedidoBean.adicionar}"
+								update=":formulario:tabelaCarrinho :formulario:painelFinalizacao">
+								<f:attribute name="produtoSelecionado" value="#{produtos}" />
+							</p:commandButton>
+
+						</h:panelGrid>
+						<p:separator />
+					</p:outputPanel>
+				</h:panelGrid>
+			</p:dataScroller>
+
+			<p:separator />
+
+			<p:panel header="Carrinho de compras">
+				<p:dataTable id="tabelaCarrinho"
+					emptyMessage="Nenhum registro encontrado."
+					value="#{pedidoBean.itens}" var="pedido">
+					<p:column headerText="Nome">
+						<h:outputText value="#{pedido.produto.nome}" />
+					</p:column>
+					<p:column headerText="Preço unitario">
+						<h:outputText value="#{pedido.produto.precoUnitario}">
+							<f:convertNumber currencyCode="MZN" type="currency" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Vendedor">
+						<h:outputText value="#{pedido.produto.usuario.nome}" />
+					</p:column>
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{pedido.quantidade}" />
+					</p:column>
+					<p:column headerText="Preço Parcial">
+						<h:outputText value="#{pedido.valor}">
+							<f:convertNumber currencyCode="MZN" type="currency" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-minus"
+							actionListener="#{pedidoBean.remover}"
+							update=":formulario:tabelaCarrinho :formulario:painelFinalizacao">
+							<f:attribute name="itemSelecionado" value="#{pedido}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+			</p:panel>
+			<p:panel header="Finalização">
+				<h:panelGrid id="painelFinalizacao" columns="3">
+					<p:outputLabel value="Total:" />
+					<h:outputText value="#{pedidoBean.pedido.valorTotal}">
+						<f:convertNumber currencyCode="MZN" type="currency" />
+					</h:outputText>
+					<p:commandButton value="Comprar"
+						update=":formularioFinalizar:painelFinalizar"
+						oncomplete="PF('dialogo').show();">
+
+					</p:commandButton>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+		<p:dialog header="Finalizar a compra" widgetVar="dialogo"
+			draggable="false" resizable="false" modal="true" closable="false">
+			<h:form id="formularioFinalizar">
+				<h:panelGrid id="painelFinalizar" columns="2">
+					<p:outputLabel value="Total:" />
+					<h:outputText value="#{pedidoBean.pedido.valorTotal}">
+						<f:convertNumber currencyCode="MZN" type="currency" />
+					</h:outputText>
+					<p:outputLabel value="Tipo de Pagamento" />
+					<p:selectOneMenu value="#{pedidoBean.pedido.tipo}">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione o tipo de pagamento" />
+						<f:selectItems value="#{pedidoBean.tipoPagamentoLista}"
+							var="tipoPagamento" itemValue="#{tipoPagamento}"
+							itemLabel="#{tipoPagamento.nome}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Locais de entrega" for="entrega" />
+					<p:selectOneMenu id="entrega" value="#{pedidoBean.pedido.entrega}">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione o local de entrega" />
+						<f:selectItems value="#{pedidoBean.entregasLista}" var="entrega"
+							itemValue="#{entrega}" itemLabel="#{entrega.local}"
+							update=":formularioFinalizar:painelFinalizar" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Finalizar a compra"
+						actionListener="#{pedidoBean.salvar}"
+						process="@this formulario:tabelaCarrinho" update="@form"
+						oncomplete="PF('dialogo').show();">
+						<p:confirm header="Confirmação" message="Deseja comprar" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
+
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes ui-priority-primary"
+						icon="ui-icon-check" />
+
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

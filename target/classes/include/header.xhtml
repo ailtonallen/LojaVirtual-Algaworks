@@ -1,0 +1,142 @@
+
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<div id="header">
+		<div id="header-top">
+			<table width="1200" align="center"
+				style="max-width: 1200px; margin-top: -10px; text-align: left;">
+				<tr>
+
+
+					<td width="89" height="41"><a
+						style="font-size: 10px; border-left: 1px solid;">&#160;&#160;&#160;</a><a
+						href="/e-auction-2015/faces/under-construction.xhtml"
+						_sp="m570.l3188" id="header-font">Gift Cards</a></td>
+					<ui:fragment rendered="#{headerbean.loggedin_user()==true}">
+						<td width="48" height="41"><a
+							style="font-size: 10px; border-left: 1px solid;">&#160;&#160;&#160;</a><a
+							href="upload_item.xhtml" _sp="m570.l3188" id="header-font">Sell</a>
+						</td>
+					</ui:fragment>
+					<ui:fragment rendered="#{headerbean.loggedin_user()==false}">
+						<td width="48" height="41"><a
+							style="font-size: 10px; border-left: 1px solid;">&#160;&#160;&#160;</a><a
+							href="signup_warning.xhtml" _sp="m570.l3188" id="header-font">Sell</a>
+						</td>
+					</ui:fragment>
+					<td width="538" height="41"><a
+						style="font-size: 10px; border-left: 1px solid;">&#160;&#160;&#160;</a><a
+						href="/e-auction-2015/faces/under-construction.xhtml"
+						_sp="m570.l3188" id="header-font">Help &amp; Contact</a></td>
+
+
+					<td width="49" height="41"><img src="img/shopping-cart.png"
+						width="23" height="21" /></td>
+				</tr>
+			</table>
+
+		</div>
+
+
+		<div id="header-middle" style="width: 1200px; margin: 0px auto;">
+			<table width="100%" style="text-align: left;">
+				<tr>
+					<td width="126" height="52"><a
+						href="/e-auction-2015/faces/searchSTR:%20_searchCAT:All%20Categories"><h:graphicImage
+								library="imagens" name="logo.png" width="70" /></a></td>
+					<td width="84"></td>
+
+					<h:form>
+						<td width="627"><h:inputText a:placeholder="Search..."
+								a:id="search_txt" a:value="#{headerbean.searchSTR}" /></td>
+						<td width="182">
+							<div id="allcategories-btn" aria-expanded="false">
+								<table width="100%" style="text-align: left;">
+									<tr>
+										<td><h:selectOneMenu a:id="allcat_select"
+												value="#{headerbean.searchCAT}">
+												<f:selectItem itemValue="All Categories"
+													itemLabel="All Categories" />
+												<f:selectItem itemValue="Action figures"
+													itemLabel="Action figures" />
+												<f:selectItem itemValue="Antiques" itemLabel="Antiques" />
+												<f:selectItem itemValue="Books" itemLabel="Books" />
+												<f:selectItem itemValue="Business &amp; industrial"
+													itemLabel="Business &amp; industrial" />
+												<f:selectItem itemValue="Cameras &amp; photo"
+													itemLabel="Cameras &amp; photo" />
+												<f:selectItem itemValue="Cars &amp; trucks"
+													itemLabel="Cars &amp; trucks" />
+												<f:selectItem itemValue="Cell phones &amp; accessories"
+													itemLabel="Cell phones &amp; accessories" />
+												<f:selectItem itemValue="Collectibles"
+													itemLabel="Collectibles" />
+												<f:selectItem itemValue="Collector &amp; hobbyist toys"
+													itemLabel="Collector &amp; hobbyist toys" />
+												<f:selectItem itemValue="Computers &amp; tablets"
+													itemLabel="Computers &amp; tablets" />
+												<f:selectItem itemValue="Crafts" itemLabel="Crafts" />
+												<f:selectItem itemValue="Dolls &amp; bears"
+													itemLabel="Dolls &amp; bears" />
+												<f:selectItem itemValue="DVDs &amp; movies"
+													itemLabel="DVDs &amp; movies" />
+												<f:selectItem itemValue="Exercise &amp; fitness"
+													itemLabel="Exercise &amp; fitness" />
+												<f:selectItem itemValue="Golf" itemLabel="Golf" />
+												<f:selectItem itemValue="Health &amp; beauty"
+													itemLabel="Health &amp; beauty" />
+												<f:selectItem itemValue="Home improvement"
+													itemLabel="Home improvement" />
+												<f:selectItem itemValue="Jewelry &amp; watches"
+													itemLabel="Jewelry &amp; watches" />
+												<f:selectItem itemValue="Kids toys" itemLabel="Kids toys" />
+												<f:selectItem itemValue="Men" itemLabel="Men" />
+												<f:selectItem itemValue="Motorcycles"
+													itemLabel="Motorcycles" />
+												<f:selectItem itemValue="Music" itemLabel="Music" />
+												<f:selectItem itemValue="Musical instruments &amp; gear"
+													itemLabel="Musical instruments &amp; gear" />
+												<f:selectItem itemValue="Passenger vehicles"
+													itemLabel="Passenger vehicles" />
+												<f:selectItem itemValue="Parts &amp; accessories"
+													itemLabel="Parts &amp; accessories" />
+												<f:selectItem itemValue="Pet supplies"
+													itemLabel="Pet supplies" />
+												<f:selectItem itemValue="Shoes" itemLabel="Shoes" />
+												<f:selectItem itemValue="Sports memorabilia"
+													itemLabel="Sports memorabilia" />
+												<f:selectItem itemValue="Team sports"
+													itemLabel="Team sports" />
+												<f:selectItem itemValue="Tickets" itemLabel="Tickets" />
+												<f:selectItem itemValue="TV, audio &amp; surveillance"
+													itemLabel="TV, audio &amp; surveillance" />
+												<f:selectItem itemValue="Video games &amp; consoles"
+													itemLabel="Video games &amp; consoles" />
+												<f:selectItem itemValue="Women" itemLabel="Women" />
+												<f:selectItem itemValue="Yard, garden &amp; outdoor"
+													itemLabel="Yard, garden &amp; outdoor" />
+											</h:selectOneMenu></td>
+										<td></td>
+									</tr>
+								</table>
+							</div>
+						</td>
+						<td width="97"><h:commandButton a:value="Search"
+								a:id="searchbtn" action="#{headerbean.redirect()}" /></td>
+					</h:form>
+
+					<td width="56"><a href="#" id="adv-search">Advanced</a></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+</ui:composition>

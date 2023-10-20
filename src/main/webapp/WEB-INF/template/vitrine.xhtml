@@ -1,0 +1,170 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+       
+	<body> 
+		<ui:composition>	
+			<div id="content">
+				<ul class="vitrineProdutos">
+										
+					<ui:repeat value="#{produtoMB.produtos}" var="produto">
+						<h:form>
+						<!-- <li><a href="#"><b> #{produto.nome}</b></a></li> -->						
+						<li class="produto-dd">
+							<input type="hidden" class="produto-id" value="#{produto.id}" />
+							<div class="content_produto">
+								
+								<h:outputLink  value="detalhe.jsf?produto=#{produto.id}">
+									<h:graphicImage class="vitrine_produto_img" library="img/produtos/" name="#{produto.imagem}" alt="#{produto.nome}" />
+								</h:outputLink>
+								
+								<div class="basic rating" data-average="#{produto.rank}" data-id="#{produto.id}"></div>								
+								<div>#{produto.nome}</div>								
+								<div>
+									<span class="strike">de: MT #{produto.preco}</span>
+											<hr />
+										<span class="preco_real" title="#{produto.preco-produto.desconto}">por: MT #{produto.preco-produto.desconto}</span>
+								</div>
+							</div>
+						</li>							
+						</h:form>
+					</ui:repeat>
+					
+		
+		<!-- 			<li>
+					<div class="block">
+						<div class="product">
+							<h:graphicImage class="vitrine_produto_img" library="img/produtos/" name="bike.jpg" alt="celular.png" />
+							
+								<div class="buttons">
+								<a class="buy" href="#">Add to cart</a>
+								<a class="preview" href="#">Detalhes</a>
+							</div>
+						</div>
+						<div class="info">
+							<h4>Armillaria luteobubalina is a species of mushroom</h4>
+							<span class="description">
+								Rwanda is a country in central and eastern Africa located a few degrees south of the Ecuator.
+							</span>
+							<span class="price">$62.97</span>
+							<a class="buy_now" href="#">Buy Now</a>
+						</div>
+						<div class="details">
+							<span class="time">12 hours ago</span>		
+							
+							<div class="basic rating" data-average="15" data-id="1"></div>
+						</div>	
+						
+					</div>
+				</li>	
+			 -->		
+						
+					
+					<!-- 
+					<li class="produto-dd">
+						<input type="hidden" class="produto-id" value="1" />
+						<div class="content_produto">
+							<a href="detalhe.jsf">							
+								<h:graphicImage class="vitrine_produto_img" library="img" name="monitor.jpg" alt="monitor" />
+							</a>
+							<div>Monitor AOC 20.0</div>
+							<div>
+								<span class="strike">de: R$ 1000.00</span>
+										<hr />
+									<span class="preco_real" title="899.00">por: R$899.00</span>
+							</div>
+						</div>
+					</li>
+					 -->
+					
+					
+					<!-- 
+					<li class="produto-dd">
+						<input type="hidden" class="produto-id" value="1" />
+						<div class="content_produto">
+							<a href="detalhe.jsf">							
+								<h:graphicImage class="vitrine_produto_img" library="img" name="monitor.jpg" alt="monitor" />
+							</a>
+							
+							<div class="basic rating" data-average="10" data-id="1"></div>
+							<div>Monitor AOC 20.0</div>
+							<div>							
+								<span class="strike">de: R$ 1000.00</span>
+										<hr />
+									<span class="preco_real" title="899.00">por: R$899.00</span>									
+							</div>
+						</div>
+					</li>
+					<li class="produto-dd">
+						<input type="hidden" class="produto-id" value="2" />
+						<div class="content_produto">
+							<h:graphicImage class="vitrine_produto_img" library="img/produtos/" name="celular2.jpeg" alt="monitor" />
+							<div class="basic rating" data-average="5" data-id="2"></div>
+							<div>Monitor AOC 20.0</div>
+							<div>
+								<span class="strike">de: R$ 1000.00</span>
+										<hr />
+									<span class="preco_real" title="899.00">por: R$899.00</span>
+							</div>
+						</div>
+					</li>
+					<li class="produto-dd">
+						<input type="hidden" class="produto-id" value="3" />	
+						<div class="content_produto">
+							<h:graphicImage class="vitrine_produto_img" library="img/produtos/" name="bike.jpg" alt="monitor" />
+							<div class="basic rating" data-average="8" data-id="3"></div>
+							<div>Monitor AOC 20.0</div>
+							<div>
+								<span class="strike">de: R$ 1000.00</span>
+										<hr />
+									<span class="preco_real" title="899.00">por: R$899.00</span>
+							</div>
+						</div>
+					</li>
+					<li class="produto-dd">
+						<input type="hidden" class="produto-id" value="4" />	
+						<div class="content_produto">
+							<h:graphicImage class="vitrine_produto_img" library="img/produtos/" name="iphone.jpg" alt="monitor" />
+							<div class="basic rating" data-average="9" data-id="4"></div>
+							<div>Monitor AOC 20.0</div>
+							<div>
+								<span class="strike">de: R$ 1000.00</span>
+										<hr />
+									<span class="preco_real" title="899.00">por: R$899.00</span>
+							</div>
+						</div>
+					</li>
+					<li class="produto-dd">
+						<input type="hidden" class="produto-id" value="5" />	
+						<div class="content_produto">
+							<h:graphicImage class="vitrine_produto_img" library="img/produtos/" name="pendrive.jpg" alt="monitor" />
+							<div class="basic rating" data-average="2" data-id="5"></div>
+							<div>Monitor AOC 20.0</div>
+							<div>
+								<span class="strike">de: R$ 1000.00</span>
+										<hr />
+									<span class="preco_real" title="899.00">por: R$899.00</span>
+							</div>
+						</div>
+					</li>
+					<li class="produto-dd">
+						<input type="hidden" class="produto-id" value="6" />	
+						<div class="content_produto">
+							<h:graphicImage class="vitrine_produto_img" library="img/produtos/" name="tablet.jpg" alt="monitor" />
+							<div class="basic rating" data-average="7" data-id="6"></div>
+							<div>Monitor AOC 20.0</div>
+							<div>
+								<span class="strike">de: R$ 1000.00</span>
+										<hr />
+									<span class="preco_real" title="899.00">por: R$899.00</span>
+							</div>
+						</div>
+					</li>
+					 -->	
+				</ul>            
+			</div> 					
+	    </ui:composition>	
+	</body> 
+</html>

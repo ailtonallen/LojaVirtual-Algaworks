@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="detalheUsu.xhtml">
+
+	<ui:define name="conteudo">
+		<p:panel header="Produto">
+			<p:graphicImage cache="false" height="100" width="100"
+				url="http://localhost:8080/uploads/#{produtos.id}.JPG" />
+			<h:panelGrid columns="1">
+
+				<h:outputLabel value="${produtos.nome}" />
+				<h:outputLabel value="${produtos.descricao}" />
+				<h:outputLabel value="${produtos.cidade}" />
+				<h:outputLabel value="${produtos.estado}" />
+				<h:outputLabel value="Preço: ${produtos.precoUnitario}" />
+				<p:separator />
+
+				<p:panel header="Finalização">
+					<h:panelGrid id="painelFinalizacao" columns="3">
+						<p:outputLabel value="Total: Mtn" />
+						<h:outputText value="#{pedidoBean.pedido.valorTotal}" />
+						<p:commandButton value="Comprar"
+							update=":formularioFinalizar:painelFinalizar"
+							oncomplete="PF('dialogo').show();"></p:commandButton>
+					</h:panelGrid>
+				</p:panel>
+				<p:dialog header="Finalizar a compra" widgetVar="dialogo"
+					draggable="false" resizable="false" modal="true" closable="false">
+					<h:form id="formularioFinalizar">
+						<h:panelGrid id="painelFinalizar" columns="2">
+							<p:outputLabel value="Total: Mtn" />
+							<h:outputText value="#{pedidoBean.pedido.valorTotal}" />
+							<p:outputLabel value="Tipo de Pagamento" />
+							<p:selectOneMenu value="#{pedidoBean.pedido.tipo}">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione o tipo de pagamento" />
+								<f:selectItems value="#{pedidoBean.tipoPagamentoLista}"
+									var="tipoPagamento" itemValue="#{tipoPagamento}"
+									itemLabel="#{tipoPagamento.nome}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Locais de entrega" />
+							<p:selectOneMenu value="#{pedidoBean.pedido.entrega}">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione o local de entrega" />
+								<f:selectItems value="#{pedidoBean.entregasLista}" var="entrega"
+									itemValue="#{entrega}" itemLabel="#{entrega.local}"
+									update=":formularioFinalizar:painelFinalizar" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+						<h:panelGrid columns="2">
+							<p:commandButton value="Finalizar a compra"
+								actionListener="#{pedidoBean.salvar}" process="@this"
+								update="@form" oncomplete="PF('dialogo').show();">
+								<p:confirm header="Confirmação" message="Deseja comprar" />
+								<f:actionListener
+									type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+							</p:commandButton>
+
+							<p:commandButton value="Fechar"
+								oncomplete="PF('dialogo').hide();" />
+						</h:panelGrid>
+						<p:confirmDialog global="true">
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes ui-priority-primary"
+								icon="ui-icon-check" />
+
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</h:form>
+				</p:dialog>
+			</h:panelGrid>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+
+</html>

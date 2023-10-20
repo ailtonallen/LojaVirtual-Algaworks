@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="pt-br"> 
+
+    <body>
+	    <ui:composition>	
+		
+				<div class="container_cadastro_fj">
+					<!-- cadastro de pessoas fisicas-->					
+					 <h:form styleClass="mg_top" id="cad_pessoa">
+				      
+				    						
+						<table >
+							<tr>
+							  <td><h:outputLabel id="lblNome" for="txtNome" value="Nome da Farmacia"/></td>
+						      <td>
+							      <p:inputText id="txtNome" label="lblNome" value="#{usuarioMB.usuario.nome}" maxlength="255" required="true" requiredMessage="Informe o Nome da Farmacia"  validatorMessage="O Nome ultrapassou 255 caracteres" styleClass="mg_canto">
+							      	<f:validateLength maximum="255"/>
+						      	  </p:inputText>						      	     	        				  
+						      </td>
+							</tr>
+							
+							<tr>
+							  <td><h:outputLabel id="lblNome" for="txtNome" value="Nome do usuario"/></td>
+						      <td>
+							      <p:inputText id="txtNome" label="lblNome" value="#{usuarioMB.usuario.username}" maxlength="10" required="true" requiredMessage="Informe o nome do usuario"  validatorMessage="O Nome ultrapassou 10 caracteres" styleClass="mg_canto">
+							      	<f:validateLength maximum="10"/>
+						      	  </p:inputText>						      	     	        				  
+						      </td>
+							</tr>
+							
+							<tr>
+								 <td><h:outputLabel id="lblCPF" for="txtCPF" value="CPF"/></td>
+							     <td>
+								     <p:inputText id="txtCPF" label="lblCPF" value="#{usuarioMB.usuario.cpfCnpj}" maxlength="14" required="true" requiredMessage="Informe o CPF" validatorMessage="O CPF ultrapassou 14 caracteres"  styleClass="mg_canto" >
+								     <f:validateLength maximum="14"/>
+								     </p:inputText>
+								</td>
+							</tr>
+							<tr>
+								<td><h:outputLabel id="lblEmail" for="cf_mail" value="E-mail"/></td>
+								<td>
+								    <p:inputText id="cf_mail" lable="lblEmail" value="#{usuarioMB.usuario.email}" maxlength="45" required="true" requiredMessage="Informe o E-mail" validatorMessage="Email inválido"  styleClass="mg_canto" >
+								    <f:validateLength maximum="45"/>
+								    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> 
+								    </p:inputText>
+								</td>
+							</tr>
+							<tr>
+						   	  <td><h:outputLabel id="lblSexo" for="lblSexo" value="Sexo:"/></td>
+						      <td>
+							      <p:selectOneRadio value="#{usuarioMB.usuario.sexo}" required="true" requiredMessage="Selecione o Sexo">							   	  
+							   	  <f:selectItem itemLabel="Masculino" itemValue="M" />  
+			            		  <f:selectItem itemLabel="Feminino" itemValue="F" />   
+							   	  </p:selectOneRadio>
+							  </td>	  
+							</tr>
+							<tr>                               
+								  <td><h:outputLabel id="lblCEP" for="txtCEP" value="CEP"/></td>
+								  <td>    
+								      <p:inputText id="txtCEP" label="lblCEP" value="#{usuarioMB.usuario.cep}" maxlength="9" required="true" requiredMessage="Informe o CEP" styleClass="mg_canto">			      
+								      <f:validateLength maximum="9"/>
+								      </p:inputText>
+								  </td>   
+							</tr>
+						</table>
+								
+									
+										</h:form>
+				</div>
+	    </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title><ui:insert name="titulo">Loja Online</ui:insert></title>
+
+	<h:outputScript library="primefaces" name="jquery/jquery.js"
+		target="head" />
+	<h:outputScript library="js" name="jquery.mask.min.js" />
+	<h:outputScript library="js" name="bootstrap/bootstrap.js" />
+	<h:outputStylesheet library="css" name="bootstrap/bootstrap.css" />
+	<h:outputStylesheet library="farmacia" name="sistema.css" />
+</h:head>
+
+<h:body>
+
+	<p:ajaxStatus styleClass="ajax-status">
+		<f:facet name="start">
+			<h:graphicImage library="images" name="loading.gif" width="40"
+				height="40" />
+		</f:facet>
+
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<header> <nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target="#bar1">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+			<span class="icon-bar"></span> <span class="icon-bar"></span>
+		</button>
+
+		<h:link styleClass="navbar-brand" value="Vendas" outcome="/home" />
+	</div>
+
+	<div class="collapse navbar-collapse" id="bar1">
+		<ul class="nav navbar-nav">
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">Produtos<span class="caret"></span></a>
+
+				<ul class="dropdown-menu">
+					<li><h:link value="Fabricantes"
+							outcome="/produtos/fabricantes" /></li>
+					<li><h:link value="Categorias" outcome="/produtos/categorias" /></li>
+					<li><h:link value="Produtos" outcome="/produtos/produtos" /></li>
+
+					<li role="separator" class="divider"></li>
+					<li><a href="#">Separated link</a></li>
+
+				</ul></li>
+
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">Estoque<span class="caret"></span></a>
+
+				<ul class="dropdown-menu">
+					<li><h:link value="Fornecedores"
+							outcome="/estoque/fornecedores" /></li>
+
+					<li role="separator" class="divider"></li>
+
+					<li><h:link value="Cadastro Entrada de Produtos"
+							outcome="/estoque/cadastroEntradaProdutos" /></li>
+
+					<li><h:link value="Pesquisa Entrada de Produtos"
+							outcome="/estoque/pesquisaEntradaProdutos" /></li>
+				</ul></li>
+
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">Pedidos<span class="caret"></span></a>
+
+				<ul class="dropdown-menu">
+					<li><h:link value="Cadastro pedido"
+							outcome="/pedidos/cadastroPedido" /></li>
+
+				</ul></li>
+
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">Clientes<span class="caret"></span></a>
+
+				<ul class="dropdown-menu">
+					<li><h:link value="Cadastro e pesquisa"
+							outcome="/cliente/Clientes" /></li>
+
+				</ul></li>
+
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">Usuarios<span class="caret" /></a>
+
+				<ul class="dropdown-menu">
+
+					<li><h:link value="Cadastro de funcionários"
+							outcome="/funcionarios/funcionarioCadastro" /></li>
+
+					<li><h:link value="Pesquisa de funcionários"
+							outcome="/funcionarios/funcionarioPesquisa" /></li>
+
+				</ul></li>
+
+
+
+			<li><h:link value="Meus Pedidos" /></li>
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><h:form class="navbar-form">
+					<div class="form-group">
+						<h:inputText styleClass="form-control"
+							value="#{pesquisaProdutoGlobal.produtoString}" />
+					</div>
+					<h:button style="margin-left:10px" value="Pesquisar"
+						styleClass="btn btn-default"></h:button>
+
+				</h:form></li>
+
+			<li><h:link value="Sair" /></li>
+		</ul>
+	</div>
+
+	</nav> </header>
+
+
+	<div id="conteudo">
+		<p:messages id="msgGlobal" closable="true" />
+		<p:growl id="grlGlobal" />
+		<ui:insert name="corpo" />
+	</div>
+
+	<p:separator style="margin-top:20px" />
+
+	<footer> Sistema online de vendas - Por Bruno da Silva Amorim
+	- <a href="http://lojaonline-projetospessoais.rhcloud.com/home.xhtml"
+		target="_blank">Site</a> </footer>
+
+</h:body>
+
+</html>

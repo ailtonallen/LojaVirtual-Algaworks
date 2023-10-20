@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="pt-br"> 
+
+
+	<body> 
+		<ui:composition>	
+				<div class="container_elements mg_canto">
+				<div class="banner_img_destaque">					
+					<h:graphicImage class="banner_img_produto" library="img/produtos/" name="#{produtoMB.detalhes.imagem}" alt="#{produtoMB.detalhes.nome}" />
+				</div>	
+				<div class="main_descricao_produto" >
+					<input style="margin-top: 37px;float: right;" type="button" class="btn_ui" value="Descrição Completa" onclick="location.href='#descricao_detalhe';" />					
+					<h2 class="banner_title_produto">#{produtoMB.detalhes.nome}</h2>										
+						<div class="banner_desc_produto">
+							<p style="width: 236px;">#{produtoMB.detalhes.descPq}</p>							
+							<br />
+							<!-- 
+							<input type="button" class="btn_ui" value="Adicionar ao Carrinho" />
+							<br />
+							<input type="button" class="btn_ui" value="Adicionar e Finalizar a compra" /><br />
+							 -->
+						</div>
+						<div class="banner_preco">
+							<span class="strike">de: R$ #{produtoMB.detalhes.preco}</span>
+								<hr />
+							<span class="preco_real" title="#{produtoMB.detalhes.preco-produtoMB.detalhes.desconto}">por: R$ #{produtoMB.detalhes.preco-produtoMB.detalhes.desconto}</span>
+						</div>
+				</div>
+				<div class="main_banner_galeria"> 
+					<ul >
+						<li>							
+							<h:graphicImage class="banner_img_produto imgZoom" library="img/produtos/" name="#{produtoMB.detalhes.imagem}" alt="#{produtoMB.detalhes.nome}" />
+						</li>
+						<li>
+							<h:graphicImage class="banner_img_produto imgZoom" library="img/produtos/" name="#{produtoMB.detalhes.imagem}" alt="#{produtoMB.detalhes.nome}" />
+						</li>
+						<li>
+							<h:graphicImage class="banner_img_produto imgZoom" library="img/produtos/" name="#{produtoMB.detalhes.imagem}" alt="#{produtoMB.detalhes.nome}" />
+						</li>												
+					</ul>
+				</div>
+			</div>	
+											
+			<div class="title_destaque">Separamos mais alguns produtos que você pode gostar</div>	
+	
+			<div id="content" style="margin-top: 15px">
+				<ul class="vitrineProdutos produtos_separados">
+					<ui:repeat value="#{produtoMB.produtos}" size="2" var="produto">				
+					<li class="produto-dd">
+						<input type="hidden" class="produto-id" value="#{produto.id}" />
+						<div class="content_produto">					
+							<h:outputLink  value="detalhe.jsf?produto=#{produto.id}">
+								<h:graphicImage class="vitrine_produto" library="img/produtos/" name="#{produto.imagem}" alt="#{produto.nome}" />
+							</h:outputLink>							
+							<div class="basic rating" data-average="#{produto.rank}" data-id="#{produto.id}"></div>
+							<div>#{produto.nome}</div>
+							<div>
+								<span class="strike">de: R$ #{produto.preco}</span>
+										<hr />
+									<span class="preco_real" title="#{produto.preco-produto.desconto}">por: R$ #{produto.preco-produto.desconto}</span>
+							</div>
+						</div>
+					</li>
+					</ui:repeat>
+													
+				</ul>            
+			</div>      		
+			
+			<div class="title_destaque">Descrição Completa</div>
+			<h2 class="banner_title_produto mg_canto">#{produtoMB.detalhes.nome}</h2>
+			<div class="banner_desc_produto mg_canto" id="descricao_detalhe"><h:outputText value="#{produtoMB.detalhes.descGd}" escape="false" /></div>			
+       </ui:composition>
+	</body> 
+</html>

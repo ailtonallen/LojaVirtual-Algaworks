@@ -1,0 +1,23 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">Pagina Inicial</ui:define>
+
+	<ui:define name="corpo">
+		<br />
+		<br />
+		<br />Seja bem-vindo!<br />
+		<br />
+		<br />
+	</ui:define>
+	<f:metadata>
+		<o:viewParam name="produto" value="#{pesquisaProdutosBean.produto}" />
+		<f:viewAction action="#{pesquisaProdutosBean.pesquisar}" />
+	</f:metadata>
+
+
+</ui:composition>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="pt-br"> 
+
+
+	<body> 
+		<ui:composition>	
+			<div class="title_destaque mg_top" style="margin-bottom: 30px;">A busca por " <span>#{produtoMB.nomePesquisa}</span> " encontrou</div>	
+			<div id="content">
+				<ul class="vitrineProdutos">										
+					<ui:repeat value="#{produtoMB.produtosBusca}" var="produto">
+						<h:form>												
+						<li class="produto-dd">
+							<input type="hidden" class="produto-id" value="#{produto.id}" />
+							<div class="content_produto">
+								
+								<h:outputLink  value="detalhe.jsf?produto=#{produto.id}">
+									<h:graphicImage class="vitrine_produto_img" library="img/produtos/" name="#{produto.imagem}" alt="#{produto.nome}" />
+								</h:outputLink>
+								
+								<div class="basic rating" data-average="#{produto.rank}" data-id="#{produto.id}"></div>								
+								<div>#{produto.nome}</div>								
+								<div>
+									<span class="strike">de: MT #{produto.preco}</span>
+											<hr />
+										<span class="preco_real" title="#{produto.preco-produto.desconto}">por: MT #{produto.preco-produto.desconto}</span>
+								</div>
+							</div>
+						</li>							
+						</h:form>
+					</ui:repeat>
+				</ul>            
+			</div>	
+       </ui:composition>
+	</body> 
+</html>

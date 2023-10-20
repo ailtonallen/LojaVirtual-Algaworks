@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="pt-br"> 
+
+	<body> 
+		<ui:composition>
+			<div class="title_destaque mg_top">Identificação</div>	
+				
+			<div class="identificacao_left mg_canto">
+				<div class="title_destaque"><span>Novo</span> Cadastro</div>
+				<div class="mg_top">Se você ainda não é cadastrado, escolha uma das opções abaixo:</div>	
+				
+				<p:commandButton id="cad_btn_fisica" styleClass="btn_ui mg_top" action="#{usuarioMB.novo}" value="Para Farmacias" title="Para Farmacias"/>								
+				
+			
+				<ui:include src="/WEB-INF/template/formsUsuarios.xhtml" />
+			
+			</div>
+			
+			<div class="identificacao_right mg_right">
+				<div class="title_destaque"><span>Já sou</span> cadastrado</div>
+				<div class="mg_canto mg_top">Se você já é cadastrado, digite seus dados:</div>	
+				
+				<div class="mg_canto mg_top">					
+					<h:form class="area_login_inputs">						
+                          <table >
+                              <tr class="mg_top">
+                                  <td><h:outputLabel id="lblLog_usuario" for="log_usuario" value="Usuario "/> </td>
+                                  <td>
+                                  <p:inputText id="log_usuario" label="lblLog_usuario" value="#{loginMB.usuario.login}" maxlength="255" required="true" requiredMessage="Informe o E-mail"  validatorMessage="O E-mail está incorreto"  styleClass="mg_canto" style="margin-bottom: 3px">
+								      <f:validateLength maximum="45"/>
+								   </p:inputText>                                                               
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td><h:outputLabel id="lblLog_senha" for="log_senha" value="Senha "/> </td>
+                                  <td>
+                                   <p:password id="log_senha" label="lblLog_senha" value="#{loginMB.usuario.senha}" maxlength="10" required="true" requiredMessage="Informe a senha" validatorMessage="A senha ultrapassou 10 caracteres"  styleClass="mg_canto" feedback="true" 
+							      	promptLabel="Preencha o campo" weakLabel="Fraca"  
+                        				goodLabel="forte" strongLabel="Muito forte"/>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td colspan="2">
+                                  <h:commandButton  value="Entrar" styleClass="btn_ui mg_top" action="#{loginMB.logar}"/>                                  
+                                  </td>
+                              </tr>                                                                                                                                           
+                          </table>
+					</h:form>						
+				</div>						
+			</div>
+		
+		</ui:composition>
+	
+	</body> 
+</html>

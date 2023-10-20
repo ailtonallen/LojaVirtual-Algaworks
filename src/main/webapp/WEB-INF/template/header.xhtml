@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+   <body>   	
+	   <ui:composition>
+			<div class="topHeader">
+					<div class="maincenter">				
+						<div id="logo">
+							<a href="index.jsf">								
+								<h:graphicImage library="img" name="logo.png" />
+							</a>
+						</div>
+						<div class="header_fone">Compre pelo Telefone (+258) xxxxxxx</div>
+						<div class="search" >
+							<!-- 
+							<input type="text" class="inputtext" value="O que você procura?" />
+							<input type="button" class="btn_ui" value="Pesquisar" />
+							 -->
+							<h:form>              
+				    	        <p:autoComplete styleClass="inputtext" id="acNome" minQueryLength="2" value="#{produtoMB.nomePesquisa}" effect="fade" completeMethod="#{produtoMB.complete}" />
+				                <p:commandButton styleClass="inputButton" action="#{pesquisaProdutosBean.produtoSelecionado}" value="Pesquisar" />
+				                                 
+							</h:form>													
+						</div>
+						<div class="carrinho">
+							<input type="hidden" value="0" id="total"/>
+							<div class="checkcarrinho">							
+								<h:graphicImage library="img" name="icone_carrinho.png" alt="Monitor"/>
+								Meu Carrinho <span class="intens_carrinho"> 0 </span>							
+							</div>	
+							<div class="form_carrinho">
+								<div id="log"></div>	
+								<div id="logout"><h:form><h:commandLink value="Sair do sistema" action="#{loginMB.logout}" style="padding-top: 10px;display: block;"/></h:form></div>							
+							</div>
+												
+						</div>					
+					</div>				
+			</div>
+			<div class="menuWrap">
+				<ul class="headerMenu">	
+					<ui:repeat value="#{categoriaMB.categorias}" var="categoria">
+						<li><h:outputLink value="produto-categoria.jsf?categoria=#{categoria.id}"><b> #{categoria.catNome}</b></h:outputLink></li>	
+						
+					</ui:repeat>
+						<!-- 
+						<li><a href="#"><b> Ultrabooks</b></a></li>
+						<li><a href="#"><b> Telefonia</b></a></li>
+						<li><a href="#"><b> Tablets</b></a></li>
+						<li><a href="#"><b> Games</b></a></li>
+						 -->
+				</ul>				
+			</div>			
+	
+	
+			<script type="text/javascript">
+				$(document).ready(function(){
+					var logado = "#{sessionScope.usuario.nome}";
+					var admin = "#{sessionScope.usuario.admin}";
+					var link = "login.jsf";
+					
+					if(admin === "S"){
+						link = "admin/pages/home.jsf";
+					}
+						
+					if(logado === ""){
+						$('#log').html('<a href="login.jsf">faça seu login ou cadastre-se</a>');
+						$('#logout').hide();
+					}else{
+						$('#log').html('<a href="'+link+'">Olá, <span style="color: #7CF51D;text-shadow: 0 1px 1px #333;">'+logado+'!</span></a><br />');						
+					}
+				});
+			</script>	
+				
+	 </ui:composition>
+  </body> 
+</html>

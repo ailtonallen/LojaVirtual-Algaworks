@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistema de Consulta e Venda</ui:insert></title>
+	<h:outputStylesheet library="farmacia" name="sistema.css" />
+	<h:outputStylesheet library="farmacia" name="animate.css" />
+	<h:outputStylesheet library="farmacia" name="bootstrap.css" />
+	<h:outputStylesheet library="farmacia" name="flexslider.css" />
+	<h:outputStylesheet library="farmacia" name="icomoon.css" />
+	<h:outputStylesheet library="farmacia" name="style.css" />
+	<h:outputStylesheet library="farmacia" name="owl.carousel.min.css" />
+	<h:outputStylesheet library="farmacia" name="owl.theme.default.min.css" />
+	<h:outputScript library="js" name="modernizr-2.6.2.min.js" />
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+	<h:outputScript library="js" name="validadores.js" />
+</h:head>
+
+<h:body>
+	<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()">
+		<f:facet name="start">
+			<h:graphicImage library="imagens" name="loading.gif" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<header>
+
+
+
+
+
+
+		<div style="float: left; margin-right: 50px">
+			<h:link outcome="/index">
+				<h:graphicImage library="imagens" name="logo.png" width="100" />
+			</h:link>
+		</div>
+
+		<h:form id="formPesquisaProduto">
+			<div style="float: left;">
+
+				<p:inputText style="margin-right:10px" placeholder="Procurar.."
+					id="produto" size="38" value="#{pesquisaProdutosBean.produto}" />
+			</div>
+			<div style="float: left; margin-right: 20px">
+				<ui:insert name="pesquisa">
+					<p:commandButton action="#{pesquisaProdutosBean.pesquisar}"
+						process="@this formPesquisaProduto:produto" value="Pesquisar"
+						icon="ui-icon-search" />
+				</ui:insert>
+			</div>
+		</h:form>
+
+
+		<div style="float: right; margin-right: 75px">
+
+
+			<h:form style="display: inline-block">
+
+				<p:menubar styleClass="menu-sistema">
+					<p:submenu label="Cadastros">
+
+						<p:menuitem value="Usuários" outcome="/usuario/PesquisaUsuarios" />
+						<p:separator />
+						<p:menuitem value="Produtos" outcome="/produtos/PesquisaProdutos" />
+					</p:submenu>
+					<p:submenu label="Pedidos">
+						<p:menuitem value="Pesquisa" outcome="/pedidos/PesquisaPedidos" />
+					</p:submenu>
+					<p:menuitem value="Sair" icon="ui-icon-extlink" url="/logout" />
+				</p:menubar>
+			</h:form>
+		</div>
+		<div style="clear: both"></div>
+
+	</header>
+
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+
+	<p:separator style="margin-top: 20px" />
+
+	<footer id="fh5co-footer" role="contentinfo">
+		<span
+			style="float: left; height: 30px; line-height: 30px; margin-top: 8px; margin-right: 60px">
+			Olá #{seguranca.nomeUsuario}!</span>
+
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-4 fh5co-widget">
+					<h3>Loja da Farmacia</h3>
+					<p>
+						Seja bem-vindo à Loja da Farmacia! A farmácia online para você e
+						sua família! Nossa farmácia online conta com os melhores produtos
+						para a sua beleza e conforto. Para obter os melhores produtos para
+						você e sua família. Para manter sua excelência, a Loja da Farmacia
+						trabalha com as farmacias Zambeze, Muzinga, Quelimane, 786,
+						Popular e entre outros com os principais laboratórios
+						farmacêuticos do mercado, fornecendo aos seus consumidores
+						produtos de qualidade e confiança. <br /> <br /> Tudo que você
+						precisa em poucos clicks e com frete reduzido para a cidade de
+						Quelimane. <br />Encontre os melhores produtos para você e sua
+						família aqui na Loja da Farmacia.
+					</p>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Sobre nós</a></li>
+						<li><a href="#">Ajuda</a></li>
+						<li><a href="#">Contacto</a></li>
+						<li><a href="#">Termos e Condições</a></li>
+
+					</ul>
+				</div>
+
+				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+					<ul class="fh5co-footer-links">
+						<li><a href="#">Loja</a></li>
+						<li><a href="#">Privacidade</a></li>
+						<li><a href="#">Testenhunhos</a></li>
+
+					</ul>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="fh5co-contact-info">
+			<h3>Informação de Contacto</h3>
+			<ul>
+				<li class="Endereço">Av. 1 de Julho, <br /> Casa 28 Quelimane
+				</li>
+				<li class="Celular"><a href="tel://+258840588122">+258 84
+						058 8122 </a></li>
+				<li class="Email"><a href="mailto:ailtonallen@gmail.com">ailtonallen@gmail.com</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	<script>
+		function configurarMoeda() {
+			$(".moeda").maskMoney({
+				decimal : ",",
+				thousands : ".",
+				allowZero : true
+			});
+		}
+
+		$(document).ready(function() {
+			configurarMoeda();
+		});
+	</script>
+</h:body>
+
+</html>

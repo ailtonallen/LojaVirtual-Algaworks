@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Iniciar Sessão</title>
+
+	<link rel='stylesheet'
+		href='http://codepen.io/assets/libs/fullpage/jquery-ui.css' />
+
+	<link rel="stylesheet" href="css/style.css" media="screen"
+		type="text/css" />
+
+</h:head>
+
+<h:body>
+	<f:metadata>
+		<f:viewParam name="dummy" />
+		<f:event listener="#{loginBean.preRender}" type="preRenderView" />
+	</f:metadata>
+	<div class="login-card">
+		<h1>Log-in</h1>
+		<br />
+		<h:form>
+			<p:inputText name="user" value="#{loginBean.email}"
+				placeholder="Nome do Usuario" />
+			<p:password name="pass" placeholder="Senha" />
+			<p:commandButton name="login" action="#{loginBean.login}"
+				ajax="false" class="login login-submit" value="login" />
+		</h:form>
+
+		<div class="login-help">
+			<a href="#">Registar</a> • <a href="#">Esqueceu a sua Senha</a>
+		</div>
+	</div>
+
+	<!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->
+
+	<script
+		src='http://codepen.io/assets/libs/fullpage/jquery_and_jqueryui.js'></script>
+
+</h:body>
+
+</html>

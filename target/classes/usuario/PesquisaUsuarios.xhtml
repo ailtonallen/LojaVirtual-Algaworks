@@ -1,0 +1,90 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de Usuários </ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="frmPesquisa">
+			<h1>Pesquisa Usuários </h1>
+
+			<p:toolbar style="margin-top: 20px;">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" action="#{pesquisaUsuarioBean.pesquisar}" 
+						update="@form" icon="ui-icon-search"/>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" outcome="/usuario/CadastroUsuario" icon="ui-icon-newwin"/>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel"
+				style="width:100%; margin-top:20px" columnClasses="rotulo, campo">
+				
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="50" value="#{pesquisaUsuarioBean.filtro.nome}" />
+
+				<p:outputLabel value="E-mail" for="email" />
+				<p:inputText id="email" size="50" value="#{pesquisaUsuarioBean.filtro.email}"/>
+
+			</p:panelGrid>
+			
+			<p:dataTable id="usuariosTabela" value="#{pesquisaUsuarioBean.usuariosFiltrados}" var="usuario"
+			style="margin-top:20px" emptyMessage="Nenhum usuario encontrado." rows="20" paginator="true"
+			paginatorAlwaysVisible="false" paginatorPosition="bottom">
+			
+			<p:column headerText="Código" style="text-align: center; width:50px">
+					<h:outputText value="#{usuario.id}"/>	
+			</p:column>
+			
+			<p:column headerText="Nome" style="width:150px">
+				<h:outputText value="#{usuario.nome}"/>
+			</p:column>
+					
+			<p:column headerText="E-mail" style="text-align: center; width: 100px">
+				<h:outputText value="#{usuario.email}"/>
+			</p:column>
+			
+			<p:column headerText="Telefone" style="text-align: center; width: 90px">
+				<h:outputText value="#{usuario.telefone}"/>
+			</p:column>
+			
+			<p:column headerText="Numero de casa" style="text-align: center; width: 90px">
+				<h:outputText value="#{usuario.casaNr}"/>
+			</p:column>
+			
+			<p:column headerText="Bairro" style="text-align: center; width: 90px">
+				<h:outputText value="#{usuario.bairro}"/>
+			</p:column>
+			
+			<p:column headerText="Rua" style="text-align: center; width: 90px">
+				<h:outputText value="#{usuario.rua}"/>
+			</p:column>
+			
+						
+			<p:column style="width: 50px; text-align: center">
+				<p:button outcome="/usuario/CadastroUsuario" icon="ui-icon-pencil" title="Editar">
+					<f:param  name="usuario" value="#{usuario.id}"/>
+				</p:button>
+				<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF ('confirmacaoExclusao').show()"
+					process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+					<f:setPropertyActionListener value="#{usuario}" target="#{pesquisaUsuarioBean.usuarioSelecionado}"/>
+				</p:commandButton>
+			</p:column>
+			</p:dataTable>
+			
+			<p:confirmDialog header="Exclusão de usuarios" message="Deseja excluir o usuario #{pesquisaUsuarioBean.usuarioSelecionado.id} ?"
+	    		widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+	    		<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+	    		
+	    		<p:commandButton value="Sim" oncomplete="PF('confirmacaoExclusao').hide();"
+	    			action="#{pesquisaUsuarioBean.excluir}" process="@this"
+	    				update=":frmPesquisa:usuariosTabela"/>
+	    	</p:confirmDialog>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

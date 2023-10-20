@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Loja Virtual-FATEC</title>
+</h:head>
+<h:body>
+
+	
+		<table width="100%">
+			<tr>
+				<td colspan="2" align="center"><ui:insert name="cabecalho">
+						<h:graphicImage value="./images/logotipo.jpg" />
+					</ui:insert></td>
+			</tr>
+			<tr>
+				<td width="200px" valign="top"><ui:insert name="menu">
+						<p:panel header="Menu">
+						<h:form>
+				<li><A Href="./menu.xhtml?faces-redirect=true">Início </A></li>
+				<p:separator/>
+				<li><p:commandLink value="Editar Perfil" action="${usuarioMB.editarPerfil()}"/></li>
+				<p:separator/>
+				<li><p:commandLink value="Meus produtos Comprados " action="${produtoCompradoMB.meusProdutos()}"/></li>
+				<p:separator/>
+				<li><p:commandLink value="Sair" action="${usuarioMB.sair()}"/></li>
+				<p:separator/>
+			</h:form>
+		          
+		          </p:panel> 	
+							
+				
+					</ui:insert></td>
+				<td><ui:insert name="conteudo">
+              Conteúdo
+            </ui:insert></td>
+			</tr>
+		</table>
+
+</h:body>
+</html>

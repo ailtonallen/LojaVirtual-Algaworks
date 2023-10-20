@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+
+	<ui:define name="pesquisa">
+		<p:commandButton action="#{pesquisaProdutosBean.pesquisar}"
+			process="@this formPesquisaProduto:produto" value="Pesquisar"
+			update=":formulario:tabelaProduto" icon="ui-icon-search" />
+	</ui:define>
+	<ui:define name="titulo">Pagina Inicial</ui:define>
+
+	<ui:define name="corpo">
+
+		<h:outputText value="Visitante?" />
+		<br /> Faça seu
+		<h:outputLink value="Login.xhtml">login</h:outputLink>
+		ou
+		<h:outputLink value="usuario/CadastroUsuario.xhtml">cadastre-se</h:outputLink>
+
+		<p:growl id="mensagem" />
+		<h:form id="formulario">
+			<p:messages autoUpdate="true" closable="true" />
+			<p:dataGrid id="tabelaProduto" columns="3" layout="grid"
+				value="#{pesquisaProdutosBean.produtosFiltrados}" var="produtos">
+				<f:facet name="header">
+
+				</f:facet>
+
+				<h:commandLink value="#{produtos.nome}"
+					style="width: 55%; text-align: center;" />
+				<br />
+
+				<p:graphicImage cache="false" height="150" width="150"
+					url="http://localhost:8080/uploads/#{produtos.id}.JPG" />
+				<br />
+
+				<h:outputText value="#{produtos.precoUnitario}"
+					style="width: 25%; text-align: center;">
+					<f:convertNumber currencyCode="MZN" type="currency" />
+				</h:outputText>
+				<br />
+				<p:commandButton value="Adicionar ao carrinho" icon="ui-icon-cart"
+					title="Adicionar ao carrinho" style="margin-top: 15px;"
+					actionListener="#{pedidoBean.adicionar}" update=":formulario">
+					<f:attribute name="produtoSelecionado" value="#{produtos}" />
+				</p:commandButton>
+
+
+			</p:dataGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

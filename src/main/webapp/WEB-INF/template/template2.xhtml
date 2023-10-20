@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="pt-br"> 
+	 <h:head>
+	   <title><ui:insert name="titulo"></ui:insert></title>	 	
+	 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+	 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<h:outputStylesheet name="util.css" library="css" />
+		<h:outputStylesheet name="loja.css" library="css" />		
+		<h:outputStylesheet name="jquery-ui.min.css" library="css" />
+		<h:outputScript name="jquery.min.js" library="js"/>
+		<h:outputScript name="jquery-ui.min.js" library="js"/>
+		<h:outputScript name="jquerycicle.js" library="js"/>
+		<h:outputScript name="jquery.elevateZoom.js" library="js"/>
+		<h:outputScript name="geral.js" library="js"/>
+		
+		
+		
+		<!-- <h:outputStylesheet name="block.css" library="vitrine" /> -->
+		<h:outputStylesheet name="jRating.jquery.css" library="vitrine" />
+		<h:outputScript name="jRating.jquery.js" library="vitrine"/>
+		
+	
+
+		<script type="text/javascript">
+		  $(document).ready(function(){
+			$(".basic").jRating({
+				onClick : function(element,rate) {
+				 alert("Obrigado pelo seu voto! \n Sua avaliação: "+rate+"%");
+				}
+			});
+			
+		  });
+		  $(window).load(function(){
+				$(".loading").fadeOut(100);
+				$(".container").fadeIn(700);	
+		  });
+		</script>		
+		
+	 </h:head>
+	<h:body>
+	<div class="loading"></div> 	
+	
+	<ui:repeat value="#{layoutMB.layouts}" var="layout" size="0">
+		<div id="bgAnuncio"  style="#{layout.anuncioBG};">
+			<a href="#{layout.anuncioLink}"></a>
+		</div>	
+	</ui:repeat>
+	
+	
+	<div class="container">
+	 
+		    <div id="header">
+				<ui:insert name="header" >
+				  <ui:include src="/WEB-INF/template/header.xhtml" />
+				</ui:insert>
+		    </div>
+	 
+		    <div id="bodymain">
+			  	<ui:insert name="bodymain" >
+			 	  	Atenção o conteúdo principal não está definido
+			   	</ui:insert>
+		    </div>
+	 
+		    <div id="footer">
+		    	<ui:insert name="footer" >
+		    	  <ui:include src="/WEB-INF/template/footer.xhtml" />		    	  
+		    	</ui:insert>
+	    	</div>	 
+	    </div>
+	 
+    </h:body>
+</html>

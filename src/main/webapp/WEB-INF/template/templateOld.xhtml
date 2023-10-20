@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="titulo">Loja Virtual</ui:insert></title>
+	<h:outputStylesheet library="farmacia" name="estilo.css" />
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+</h:head>
+
+<h:body>
+	<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()">
+		<f:facet name="start">
+			<h:graphicImage library="imagens" name="loading.gif" />
+		</f:facet>
+
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<header>
+
+	<div style="float: left; margin-right: 50px">
+		<h:graphicImage library="imagens" name="logo.png" width="70" />
+	</div>
+
+	<h:form id="formPesquisaProduto">
+		<div style="float: left;">
+			<p:outputLabel value="Procurar o produto" for="produto" />
+			<p:inputText id="produto" size="50"
+				value="#{pesquisaProdutosBean.produto}" />
+		</div>
+		<div style="float: left; margin-right: 20px">
+			<ui:insert name="pesquisa">
+				<p:commandButton action="#{pesquisaProdutosBean.pesquisar}"
+					process="@this formPesquisaProduto:produto" value="Pesquisar"
+					icon="ui-icon-search" />
+			</ui:insert>
+		</div>
+	</h:form>
+	<div style="float: left">
+		<h:link outcome="/Home">
+
+		</h:link>
+	</div>
+
+
+
+	<div style="float: right; margin-right: 75px;"></div>
+
+	<h:form style="display: inline-block">
+		<p:menubar styleClass="menu-sistema">
+			<p:submenu label="Gerenciar">
+				<p:menuitem value="Usuários" outcome="/usuario/PesquisaUsuarios" />
+				<p:separator />
+				<p:menuitem value="Produtos" outcome="/produto/PesquisaProdutos" />
+			</p:submenu>
+			<p:submenu label="Pedidos">
+				<p:menuitem value="Novo pedido" outcome="/pedidos/Pedidos" />
+				<p:menuitem value="Pesquisa" outcome="/pedidos/PesquisaPedidos" />
+			</p:submenu>
+			<p:submenu label="Relatórios">
+				<p:menuitem value="De Pedidos" />
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+	<div style="clear: both"></div>
+	</header>
+
+</h:body>
+
+
+<div id="conteudo">
+	<ui:insert name="corpo" />
+</div>
+
+
+<p:separator style="margin-top: 20px" />
+
+<footer> <span
+	style="float: left; height: 30px; line-height: 30px; margin-top: 8px; margin-right: 60px">
+	Ola #{usuario.nome}!</span> Loja virtual </footer>
+
+
+<script>
+	function configurarMoeda() {
+		$(".moeda").maskMoney({
+			decimal : ",",
+			thousands : ".",
+			allowZero : true
+		});
+	}
+
+	$(document).ready(function() {
+		configurarMoeda();
+	});
+</script>
+
+</html>

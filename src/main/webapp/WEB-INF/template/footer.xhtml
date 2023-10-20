@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body>
+	    <ui:composition>	
+			<div class="maincenter">
+				Todos os direitos reservados
+			</div>		
+			
+			<div class="shopping-cart drop-here ui-droppable" id="shopping-cart">		
+				<div class="inside">	
+					<h3 class="adj_cart">Meu Carrinho</h3>		
+					<div class="basket-icons">					
+						<h:graphicImage id="scart" library="img" name="shopping_cart_full.png" alt="shopping cart" width="120" height="80" />			
+					</div>
+					
+					<div id="carrinho-container">
+		            	<ul id="carrinho-produtos">
+							<li class="adicione">Arraste os produtos para esta área</li>
+						</ul>
+					</div>
+					
+					<div id="total" style="display: block;">
+						<p>
+							Total: R$<span class="total-amount"> 0</span><br />
+							Itens<span class="intens_carrinho" style="background: none"> 0 </span><br />
+							<a href="#" id="finish">Finalizar</a>
+							<a href="#" id="limpar">Cancelar</a>
+							
+						</p>
+					</div>			
+				</div>				
+			</div>	
+			
+			<div id="dialog" title="Finalizar compra">
+			  <p>Obrigado por comprar conosco</p>
+			  <p>Quantidade de itens:<span class="intens_carrinho" style="background: none"> 0 </span></p>
+			  <p>Total da compra: MT<span class="total-amount"> 0</span></p>			 
+			</div>
+					
+	    </ui:composition>
+    </body>
+</html>

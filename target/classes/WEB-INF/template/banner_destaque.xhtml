@@ -1,0 +1,112 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<body> 
+		<ui:composition>	
+			<div class="bloco_destaque">
+				<div class="mainBanner">				
+					<div class="banner_left">
+						<h:graphicImage class="banner_img_produto" library="img" name="banner_left.png" alt="monitor" />
+				    </div>
+					
+						<div class="carousel">
+										
+										
+							<ui:repeat value="#{produtoMB.produtosDestaques}" var="produto">
+							<h:form>
+								<div class="container_elements">
+									<div class="banner_img_destaque">									
+										<h:outputLink  value="detalhe.jsf?produto=#{produto.id}">
+											<h:graphicImage class="banner_img_produto banner-produto" library="img/produtos/" name="#{produto.imagem}" alt="#{produto.nome}" />
+										</h:outputLink>
+									</div>	
+									<div class="main_descricao_produto">
+										<h2 class="banner_title_produto"><h:outputLink  value="detalhe.jsf?produto=#{produto.id}">#{produto.nome}</h:outputLink></h2>
+											<div class="banner_desc_produto"><h:outputLink  value="detalhe.jsf?produto=#{produto.id}#descricao_detalhe">#{produto.descPq}</h:outputLink></div>
+											<div class="banner_preco">
+												<span class="strike">de: MT #{produto.preco}</span>
+													<hr />
+												<span class="preco_real">por: MT #{produto.preco-produto.desconto}</span>
+											</div>
+											
+											
+											
+									</div>
+									<div class="main_banner_galeria"> 
+										<ul >
+										
+											<li><h:graphicImage class="banner_img_produto imgZoom" library="img/produtos/" name="#{produto.imagem}" alt="#{produto.nome}" /></li>
+											<li><h:graphicImage class="banner_img_produto imgZoom" library="img/produtos/" name="#{produto.imagem}" alt="#{produto.nome}" /></li>
+											<li><h:graphicImage class="banner_img_produto imgZoom" library="img/produtos/" name="#{produto.imagem}" alt="#{produto.nome}" /></li>
+										</ul>
+									</div>
+								</div>
+							</h:form>							
+							</ui:repeat>			
+							
+							
+							
+							<!--			
+							 			
+							<div class="container_elements">
+								<div class="banner_img_destaque">									
+									<h:graphicImage class="banner_img_produto" library="img" name="monitor.jpg"/>
+								</div>	
+								<div class="main_descricao_produto">
+									<h2 class="banner_title_produto">Monitor AOC 20.0</h2>
+										<div class="banner_desc_produto">O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime de livro. Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum.</div>
+										<div class="banner_preco">
+											<span class="strike">de: R$ 1000.00</span>
+												<hr />
+											<span class="preco_real">por: R$899.00</span>
+										</div>
+								</div>
+								<div class="main_banner_galeria"> 
+									<ul >
+										<li><h:graphicImage class="banner_img_produto" library="img" name="monitor.jpg"/></li>
+										<li><h:graphicImage class="banner_img_produto" library="img" name="monitor.jpg"/></li>
+										<li><h:graphicImage class="banner_img_produto" library="img" name="monitor.jpg"/></li>
+									</ul>
+								</div>
+							</div>
+											
+							<div class="container_elements">
+								<div class="banner_img_destaque">									
+									<h:graphicImage class="banner_img_produto" library="img/produtos/" name="celular.jpeg"/>
+								</div>	
+								<div class="main_descricao_produto">
+									<h2 class="banner_title_produto">Celular</h2>
+										<div class="banner_desc_produto">O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime de livro. Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum.</div>
+										<div class="banner_preco">
+											<span class="strike">de: R$ 1000.00</span>
+												<hr />
+											<span class="preco_real">por: R$899.00</span>
+										</div>
+								</div>
+								<div class="main_banner_galeria"> 
+									<ul >
+										<li><h:graphicImage class="banner_img_produto" library="img" name="celular.jpeg"/></li>
+										<li><h:graphicImage class="banner_img_produto" library="img" name="celular.jpeg"/></li>
+										<li><h:graphicImage class="banner_img_produto" library="img" name="celular.jpeg"/></li>
+									</ul>
+								</div>
+							</div>
+							-->
+							
+							
+																	
+						</div>                                    
+				</div>	
+				
+				<div class="faixa_banner">
+					<div class="maincenter">
+						Somente hoje produtos com até 50% de desconto
+					</div>	
+				</div>	
+			</div>					
+	    </ui:composition>	
+	</body> 
+</html>

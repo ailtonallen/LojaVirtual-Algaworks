@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="pt-br">  
+     
+   <body> 
+		<ui:composition>	
+			<div id="esqsidebar">
+				<h2 class="headersiddebar">Categorias</h2> 
+	            <ul>	
+					<ui:repeat value="#{categoriaMB.categorias}" var="categoria">
+						<li><h:outputLink value="produto-categoria.jsf?categoria=#{categoria.id}"><b> #{categoria.catNome}</b></h:outputLink></li>
+					</ui:repeat>
+					<!-- 
+					<li><a href="#"><b> Ultrabooks</b></a></li>
+					<li><a href="#"><b> Telefonia</b></a></li>
+					<li><a href="#"><b> Tablets</b></a></li>
+					<li><a href="#"><b> Games</b></a></li>
+					 -->
+				</ul>
+		   </div>				
+      </ui:composition>
+	</body> 
+</html>
